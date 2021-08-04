@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"log"
 
-	hdwallet "github.com/miguelmota/go-ethereum-hdwallet"
+	hdwallet "github.com/rafaelescrich/go-ethereum-hdwallet"
 )
 
 func main() {
@@ -16,7 +16,7 @@ func main() {
 	flag.StringVar(&hdpath, "path", "", "HD path")
 	flag.Parse()
 
-	wallet, err := hdwallet.NewFromMnemonic(mnemonic)
+	wallet, err := hdwallet.NewFromMnemonic(mnemonic, "")
 	if err != nil {
 		log.Fatal(err)
 	}

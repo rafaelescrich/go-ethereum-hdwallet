@@ -7,12 +7,12 @@ import (
 	"github.com/davecgh/go-spew/spew"
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/core/types"
-	"github.com/miguelmota/go-ethereum-hdwallet"
+	hdwallet "github.com/rafaelescrich/go-ethereum-hdwallet"
 )
 
 func main() {
 	mnemonic := "tag volcano eight thank tide danger coast health above argue embrace heavy"
-	wallet, err := hdwallet.NewFromMnemonic(mnemonic)
+	wallet, err := hdwallet.NewFromMnemonic(mnemonic, "")
 	if err != nil {
 		log.Fatal(err)
 	}

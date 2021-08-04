@@ -19,7 +19,7 @@ func TestIssue172(t *testing.T) {
 	mnemonic := "sound practice disease erupt basket pumpkin truck file gorilla behave find exchange napkin boy congress address city net prosper crop chair marine chase seven"
 
 	getWallet := func() *Wallet {
-		wallet, err := NewFromMnemonic(mnemonic)
+		wallet, err := NewFromMnemonic(mnemonic, "")
 		if err != nil {
 			t.Error(err)
 		}
@@ -61,7 +61,7 @@ func TestIssue172(t *testing.T) {
 
 func TestWallet(t *testing.T) {
 	mnemonic := "tag volcano eight thank tide danger coast health above argue embrace heavy"
-	wallet, err := NewFromMnemonic(mnemonic)
+	wallet, err := NewFromMnemonic(mnemonic, "")
 	if err != nil {
 		t.Error(err)
 	}
@@ -271,7 +271,7 @@ func TestWallet(t *testing.T) {
 
 	// seed test
 
-	seed, err := NewSeedFromMnemonic(mnemonic)
+	seed, err := NewSeedFromMnemonic(mnemonic, "")
 	if err != nil {
 		t.Error(err)
 	}
@@ -300,7 +300,7 @@ func TestWallet(t *testing.T) {
 		t.Error("expected size of 64")
 	}
 
-	seed, err = NewSeedFromMnemonic(mnemonic)
+	seed, err = NewSeedFromMnemonic(mnemonic, "")
 	if err != nil {
 		t.Error(err)
 	}
