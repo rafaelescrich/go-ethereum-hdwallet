@@ -1,10 +1,12 @@
+//go:build ignore
+
 package main
 
 import (
 	"fmt"
 	"log"
 
-	"github.com/rafaelescrich/go-ethereum-hdwallet"
+	hdwallet "github.com/rafaelescrich/go-ethereum-hdwallet"
 )
 
 func main() {

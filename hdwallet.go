@@ -11,7 +11,7 @@ import (
 
 	"github.com/btcsuite/btcd/chaincfg"
 	"github.com/btcsuite/btcutil/hdkeychain"
-	ethereum "github.com/ethereum/go-ethereum"
+	"github.com/ethereum/go-ethereum"
 	"github.com/ethereum/go-ethereum/accounts"
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/common/hexutil"
@@ -211,6 +211,7 @@ func (w *Wallet) Derive(path accounts.DerivationPath, pin bool) (accounts.Accoun
 // derivation only runs during account listing (and even then throttled).
 func (w *Wallet) SelfDerive(base []accounts.DerivationPath, chain ethereum.ChainStateReader) {
 	// TODO: self derivation
+
 }
 
 // SignHash implements accounts.Wallet, which allows signing arbitrary data.
@@ -280,14 +281,15 @@ func (w *Wallet) SignTx(account accounts.Account, tx *types.Transaction, chainID
 		return nil, err
 	}
 
-	signer := types.HomesteadSigner{}
+	signer := types.LatestSignerForChainID(chainID)
+
 	// Sign the transaction and verify the sender to avoid hardware fault surprises
 	signedTx, err := types.SignTx(tx, signer, privateKey)
 	if err != nil {
 		return nil, err
 	}
 
-	sender, err := types.Sender(signer, signedTx)
+	msg, err := signedTx.AsMessage(signer, baseFee)
 	if err != nil {
 		return nil, err
 	}
